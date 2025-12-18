@@ -1,4 +1,4 @@
-package model;
+package com.gustavo.agenda.model;
 
 public class ServicoEspecial extends Servico {
 

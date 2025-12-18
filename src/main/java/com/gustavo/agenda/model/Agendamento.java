@@ -1,28 +1,36 @@
-package model;
-import java.time.LocalDate;
+package com.gustavo.agenda.model;
+
 import java.time.LocalDateTime;
 
 public class Agendamento {
-    private Cliente cliente;
-    private Servico servico;
+
+    private int id;
+    private String descricao;
     private LocalDateTime dataHora;
 
-    public Agendamento (Cliente cliente, Servico servico, LocalDateTime dataHora) {
-        this.cliente = cliente;
-        this.servico = servico;
-        this.dataHora = dataHora;
+   
+    public Agendamento() {
     }
 
-    public Cliente getCliente() {
-        return this.cliente;
+    
+    public int getId() {
+        return id;
     }
 
-    public Servico getServico() {
-        return this.servico;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public LocalDateTime getDataHora() {
-        return this.dataHora;
+        return dataHora;
     }
 
     public void setDataHora(LocalDateTime dataHora) {
@@ -32,10 +40,9 @@ public class Agendamento {
     @Override
     public String toString() {
         return "Agendamento{" +
-                "cliente=" + cliente.getNome() +
-                ", servico=" + servico.getNome() +
+                "id=" + id +
+                ", descricao='" + descricao + '\'' +
                 ", dataHora=" + dataHora +
                 '}';
     }
-    
 }

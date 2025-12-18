@@ -1,14 +1,12 @@
-package model;
+package com.gustavo.agenda.model;
 
 public class Cliente {
+    private int id;
     private String nome;
-    private String telefone;
     private String email;
+    private String telefone;    
 
-    public Cliente(String nome, String telefone, String email) {
-        this.nome = nome;
-        this.telefone = telefone;
-        this.email = email;
+    public Cliente() {
     }
 
     public String getNome() {
@@ -19,6 +17,12 @@ public class Cliente {
     }
     public String getEmail() {
         return this.email;
+    }
+    public int getId() {
+        return this.id;
+    }
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setNome(String nome) {
