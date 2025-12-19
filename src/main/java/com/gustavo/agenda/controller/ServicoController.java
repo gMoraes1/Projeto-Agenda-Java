@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.gustavo.agenda.model.Servico;
+import com.gustavo.agenda.model.ServicoEspecial;
 import com.gustavo.agenda.service.ServicoService;
+
 
 
 import java.util.List;
@@ -22,16 +24,21 @@ public class ServicoController {
 
     @GetMapping
     public List<Servico> listarTodos() {
-        return servicoService.listarServicos();
+        return servicoService.listarServico();
     }
 
-    @PostMapping
+    @PostMapping("/especial")
     public Servico criar(@RequestBody Servico servico) {
         return servicoService.criarServico(servico);
     }
 
+    @PostMapping
+    public Servico criarServicoEspecial(@RequestBody ServicoEspecial servico) {
+    return servicoService.criarServico(servico);
+    }
+
     @DeleteMapping("/{id}")
     public void deletar(@PathVariable int id) {
-        servicoService.removerServico(id);
+        servicoService.deletarServico(id);
     }
 }

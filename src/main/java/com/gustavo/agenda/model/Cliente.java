@@ -1,9 +1,25 @@
 package com.gustavo.agenda.model;
 
+import java.time.LocalDateTime;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import java.time.LocalDateTime;
+
+@Entity
 public class Cliente {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @NotBlank(message = "o nome é obrigatorio")
     private String nome;
+
     private String email;
+
+    @NotBlank(message = "o telefone é obrigatorio")
     private String telefone;    
 
     public Cliente() {

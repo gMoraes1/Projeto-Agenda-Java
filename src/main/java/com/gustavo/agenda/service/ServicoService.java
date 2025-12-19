@@ -5,29 +5,32 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.gustavo.agenda.model.Servico;
+import com.gustavo.agenda.repository.ServicoRepository;
 
 @Service
 public class ServicoService {
     
-    private final List<Servico> servicos = new ArrayList<>();
-    private int proximoId = 1;
+    private final ServicoRepository repository;
 
-    public List<Servico> listarServicos() {
-        return servicos;
+    @Autowired
+    public ServicoService(ServicoRepository repository) {
+        this.repository = repository;
+    } 
+
+    public List<Servico> listarServico() {
+        return repository.findAll();
     }
 
     public Servico criarServico(Servico servico) {
-        servico.setId(proximoId++);
-        servicos.add(servico);
-        return servico;
+        return repository.save(servico);
     }
 
-    public void removerServico(int id) {
-        servicos.removeIf(a -> a.getId() == id);
+    public void deletarServico(Integer id) {
+        repository.deleteById(id);
     }
-
 
     
 }

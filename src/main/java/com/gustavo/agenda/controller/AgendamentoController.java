@@ -24,15 +24,8 @@ public class AgendamentoController {
 
     @GetMapping
     public List<Agendamento> listarTodos() {
-        return agendaService.listarAgendamentos();
+        return agendaService.listarAgendamento();
     }
-
-
-    @GetMapping("/data/{data}")
-    public List<Agendamento> buscarPorData(@PathVariable String data) {
-        LocalDate localDate = LocalDate.parse(data);
-        return agendaService.buscarPorData(localDate);
-    } 
 
     @PostMapping
     public Agendamento criar(@RequestBody Agendamento agendamento) {

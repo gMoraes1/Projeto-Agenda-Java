@@ -1,10 +1,29 @@
 package com.gustavo.agenda.model;
 
-public class Servico {
-   private  String nome;
-   private double preco;
-   private int duracaoMinutos;
+import java.time.LocalDateTime;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import java.time.LocalDateTime;
+
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo_servico")
+public abstract class  Servico {
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
    private int id;
+
+   @NotBlank(message = "o nome do servico é obrigatorio")
+   private  String nome;
+
+   @NotBlank(message = "o preco de todo servico é obrigatorio")
+   private double preco;
+
+   @NotBlank(message = "a duração do servico é obrigatoria")
+   private int duracaoMinutos;
+   
 
    public Servico (String nome, double preco, int duracaoMinutos) {
     this.nome = nome;

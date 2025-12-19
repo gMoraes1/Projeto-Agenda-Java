@@ -4,38 +4,31 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-
-
 import com.gustavo.agenda.model.Agendamento;
+import com.gustavo.agenda.repository.AgendamentoRepository;
 
 @Service
 public class AgendaService {
+    private final AgendamentoRepository repository;
 
-    private final List<Agendamento> agendamentos = new ArrayList<>();
-    private int proximoId = 1;
+    @Autowired
+    public AgendaService(AgendamentoRepository repository) {
+        this.repository = repository;
+    }
 
-    public List<Agendamento> listarAgendamentos() {
-        return agendamentos;
+    public List<Agendamento> listarAgendamento() {
+        return repository.findAll();
     }
 
     public Agendamento criarAgendamento(Agendamento agendamento) {
-        agendamento.setId(proximoId++);
-        agendamentos.add(agendamento);
-            return agendamento;
-        
+        return repository.save(agendamento);
     }
 
-    public void removerAgendamento(int id) {
-        agendamentos.removeIf(a -> a.getId() == id);
-    }
-
-    public List<Agendamento> buscarPorData(LocalDate data) {
-        return agendamentos.stream()
-        .filter(a -> a.getDataHora().toLocalDate().equals(data))
-        .collect(Collectors.toList());
+    public void removerAgendamento(Integer id) {
+        repository.deleteById(id);
     }
 
     

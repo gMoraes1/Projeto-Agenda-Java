@@ -1,11 +1,24 @@
 package com.gustavo.agenda.model;
 
 import java.time.LocalDateTime;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
+@Entity
 public class Agendamento {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @NotBlank(message = "Descrição é obrigatoria")
     private String descricao;
+
+    @NotNull(message = "Data e hora sao obrigatorias")
+    @Future(message = "A data do agendamento deve ser no futuro" )
     private LocalDateTime dataHora;
 
    
