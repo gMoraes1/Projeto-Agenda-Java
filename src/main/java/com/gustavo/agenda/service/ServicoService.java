@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.gustavo.agenda.dto.ServicoDTO;
 import com.gustavo.agenda.model.Servico;
 import com.gustavo.agenda.repository.ServicoRepository;
 
@@ -24,7 +26,11 @@ public class ServicoService {
         return repository.findAll();
     }
 
-    public Servico criarServico(Servico servico) {
+    public Servico criarServico(ServicoDTO dto) {
+        Servico servico = new Servico();
+        servico.setNome(dto.getNome());
+        servico.setPreco(dto.getPreco());
+        servico.setDuracacao(dto.getDuracaoMinutos());
         return repository.save(servico);
     }
 

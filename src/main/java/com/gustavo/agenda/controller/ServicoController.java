@@ -3,11 +3,12 @@ package com.gustavo.agenda.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import com.gustavo.agenda.dto.ServicoDTO;
 import com.gustavo.agenda.model.Servico;
 import com.gustavo.agenda.model.ServicoEspecial;
 import com.gustavo.agenda.service.ServicoService;
 
-
+import jakarta.validation.Valid;
 
 import java.util.List;
 
@@ -28,13 +29,13 @@ public class ServicoController {
     }
 
     @PostMapping("/especial")
-    public Servico criar(@RequestBody Servico servico) {
-        return servicoService.criarServico(servico);
+    public Servico criar(@RequestBody @Valid ServicoDTO dto) {
+        return servicoService.criarServico(dto);
     }
 
     @PostMapping
-    public Servico criarServicoEspecial(@RequestBody ServicoEspecial servico) {
-    return servicoService.criarServico(servico);
+    public Servico criarServico(@RequestBody @Valid ServicoDTO dto) {
+    return servicoService.criarServico(dto);
     }
 
     @DeleteMapping("/{id}")

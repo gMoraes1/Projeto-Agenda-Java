@@ -3,6 +3,7 @@ package com.gustavo.agenda.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.gustavo.agenda.dto.ClienteDTO;
 import com.gustavo.agenda.model.Cliente;
 import com.gustavo.agenda.repository.ClienteRepository;
 
@@ -22,7 +23,10 @@ public class ClienteService {
         return repository.findAll();
     }
 
-    public Cliente criarCliente(Cliente cliente) {
+    public Cliente criarCliente(ClienteDTO dto) {
+        Cliente cliente  = new Cliente();
+        cliente.setNome(dto.getNome());
+        cliente.setTelefone(dto.getTelefone());
         return repository.save(cliente);
     }
 

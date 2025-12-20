@@ -14,12 +14,17 @@ public class Agendamento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotBlank(message = "Descrição é obrigatoria")
-    private String descricao;
-
     @NotNull(message = "Data e hora sao obrigatorias")
     @Future(message = "A data do agendamento deve ser no futuro" )
     private LocalDateTime dataHora;
+
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
+
+    @ManyToOne
+    @JoinColumn(name = "servico_id")
+    private Servico servico;
 
    
     public Agendamento() {
@@ -34,12 +39,12 @@ public class Agendamento {
         this.id = id;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public Servico getServico() {
+        return servico;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public Cliente getCliente() {
+        return cliente;
     }
 
     public LocalDateTime getDataHora() {
@@ -49,12 +54,19 @@ public class Agendamento {
     public void setDataHora(LocalDateTime dataHora) {
         this.dataHora = dataHora;
     }
+    
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }  
+
+    public void setServico(Servico servico) {
+        this.servico = servico;
+    }
 
     @Override
     public String toString() {
         return "Agendamento{" +
                 "id=" + id +
-                ", descricao='" + descricao + '\'' +
                 ", dataHora=" + dataHora +
                 '}';
     }

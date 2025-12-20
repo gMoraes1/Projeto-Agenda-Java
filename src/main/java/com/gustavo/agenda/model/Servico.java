@@ -5,12 +5,14 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+
 import java.time.LocalDateTime;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "tipo_servico")
-public abstract class  Servico {
+public class  Servico {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private int id;
@@ -18,17 +20,15 @@ public abstract class  Servico {
    @NotBlank(message = "o nome do servico é obrigatorio")
    private  String nome;
 
-   @NotBlank(message = "o preco de todo servico é obrigatorio")
+   @Positive(message = "o preco deve ser um valor positivo")
    private double preco;
 
-   @NotBlank(message = "a duração do servico é obrigatoria")
+   @Positive(message = "a duracao deve ser um valor positivo")
    private int duracaoMinutos;
    
 
-   public Servico (String nome, double preco, int duracaoMinutos) {
-    this.nome = nome;
-    this.preco = preco;
-    this.duracaoMinutos = duracaoMinutos;
+   public Servico () {
+
    }
 
    public String getNome() {

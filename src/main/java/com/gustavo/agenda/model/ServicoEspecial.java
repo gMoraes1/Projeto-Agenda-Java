@@ -13,9 +13,8 @@ public class ServicoEspecial extends Servico {
 
     private double taxaExtra;
 
-    public ServicoEspecial(String nome, double preco, int duracaoMinutos, double taxaExtra){
-        super(nome, preco, duracaoMinutos);
-        this.taxaExtra = taxaExtra;
+    public ServicoEspecial(){
+        
     }
     
     public double getTaxaExtra() {

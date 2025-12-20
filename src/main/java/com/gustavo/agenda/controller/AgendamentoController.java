@@ -1,7 +1,11 @@
 package com.gustavo.agenda.controller;
 
+import com.gustavo.agenda.dto.AgendamentoDTO;
 import com.gustavo.agenda.model.Agendamento;
-import com.gustavo.agenda.service.AgendaService;
+import com.gustavo.agenda.service.AgendamentoService;
+
+import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,27 +18,27 @@ import java.util.List;
 @RequestMapping("/agendamentos")
 public class AgendamentoController {
 
-    private final AgendaService agendaService;
+    private final AgendamentoService service;
 
     @Autowired
-    public AgendamentoController(AgendaService agendaService) {
-        this.agendaService= agendaService;
+    public AgendamentoController(AgendamentoService service) {
+        this.service= service;
     }
 
 
     @GetMapping
-    public List<Agendamento> listarTodos() {
-        return agendaService.listarAgendamento();
+    public List<Agendamento> listar() {
+        return service.listar();
     }
 
     @PostMapping
-    public Agendamento criar(@RequestBody Agendamento agendamento) {
-        return agendaService.criarAgendamento(agendamento);
+    public Agendamento criar(@RequestBody @Valid AgendamentoDTO dto) {
+        return service.criarAgendamento(dto);
     }
 
     @DeleteMapping("/{id}")
     public void deletar(@PathVariable int id) {
-        agendaService.removerAgendamento(id);
+        service.deletar(id);
     }
     
 }

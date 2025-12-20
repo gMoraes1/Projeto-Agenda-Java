@@ -3,8 +3,11 @@ package com.gustavo.agenda.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import com.gustavo.agenda.dto.ClienteDTO;
 import com.gustavo.agenda.model.Cliente;
 import com.gustavo.agenda.service.ClienteService;
+
+import jakarta.validation.Valid;
 
 import java.util.List;
 
@@ -25,8 +28,8 @@ public class ClienteController {
     }
 
     @PostMapping
-    public Cliente criar(@RequestBody Cliente cliente) {
-        return clienteService.criarCliente(cliente);
+    public Cliente criar(@RequestBody @Valid ClienteDTO dto) {
+        return clienteService.criarCliente(dto);
     }
 
     @DeleteMapping("/{id}")
